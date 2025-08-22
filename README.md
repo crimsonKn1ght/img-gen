@@ -11,11 +11,10 @@ It creates images using diffusion models on your pc. It imports diffusion models
 
 Here are a few examples:
 
-<img width="1024" height="1024" alt="man running" src="https://github.com/user-attachments/assets/c864805c-7e62-4508-8f30-2bdd368b6732" />
+| Cyberpunk City | Couple dancing | Dog |
+|---|---|---|
+| <img src="https://github.com/user-attachments/assets/e11151ae-be50-4721-87e6-27d13c2c4137" width="250" height="250" /> | <img src="https://github.com/user-attachments/assets/d388344f-653a-4a4a-8ff0-277b15537ceb" width="250" height="250" /> | <img src="https://github.com/user-attachments/assets/a5eea5f7-ebb1-4c32-981c-456ce8ca4ea5" width="250" height="250" /> |
 
-<img width="1024" height="1024" alt="dance" src="https://github.com/user-attachments/assets/d388344f-653a-4a4a-8ff0-277b15537ceb" />
-
-<img width="1024" height="1024" alt="dog" src="https://github.com/user-attachments/assets/a5eea5f7-ebb1-4c32-981c-456ce8ca4ea5" />
 
 ## 🤝 Contributions are greatly welcomed
 
