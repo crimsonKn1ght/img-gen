@@ -76,7 +76,7 @@ class UIView:
     def __init__(self, root, controller):
         self.root = root
         self.controller = controller
-        self.root.title("Next-Level Text-to-Image Generator")
+        self.root.title("IMG-GEN")
         self.root.geometry("600x820")
 
         # --- Call the new method to set up the dark theme ---
