@@ -1,21 +1,21 @@
-#Core Streamlit dependency
+# Core Streamlit dependency
 streamlit
 
-#Core ML/AI dependencies
+# Core ML/AI dependencies
 torch>=2.0.0
 torchvision>=0.15.0
-torchaudio>=2.0.0
+torchaudio>=0.20.0
 
-#Diffusion models and image processing
+# Diffusion models and image processing
 diffusers>=0.21.0
 transformers>=4.25.0
 accelerate>=0.20.0
 
-#Image processing
+# Image processing
 Pillow>=9.5.0
 
-#Optional performance optimizations
-xformers>=0.0.20
+# Optional performance optimizations
+# xformers>=0.0.20
 
 # Additional recommended packages for stability
 numpy>=1.24.0

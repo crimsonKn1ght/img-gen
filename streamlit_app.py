@@ -19,11 +19,12 @@ MODEL_OPTIONS = {
 # ---------------------------------------------------
 @st.cache_resource
 def get_model(model_id):
-    """Loads and caches the diffusion model to avoid reloading."""
+    """Loads and caches the diffusion model to avoid reloading on every interaction."""
     device = "cuda" if torch.cuda.is_available() else "cpu"
     torch_dtype = torch.float16 if device == "cuda" else torch.float32
 
-    with st.spinner(f"Loading model {model_id}... This may take a moment."):
+    # Display a user-friendly message while the model loads
+    with st.spinner(f"Loading model: {model_id}... This can take a few minutes on the first run."):
         pipe = AutoPipelineForText2Image.from_pretrained(
             model_id, torch_dtype=torch_dtype
         ).to(device)
@@ -35,7 +36,7 @@ def get_model(model_id):
 st.set_page_config(layout="wide", page_title="IMG-GEN")
 
 st.title("🖼️ IMG-GEN: AI Image Generator")
-st.markdown("Bring your creative ideas to life! Describe the image you want to create in the sidebar and click 'Generate'.")
+st.markdown("Bring your creative ideas to life! Describe the image you want in the sidebar, and the AI will generate it for you.")
 
 # --- Sidebar for user inputs ---
 with st.sidebar:
@@ -44,8 +45,8 @@ with st.sidebar:
     model_name = st.selectbox("Select Model:", options=list(MODEL_OPTIONS.keys()), help="Choose the AI model to generate the image.")
     model_id = MODEL_OPTIONS[model_name]
 
-    prompt = st.text_area("Prompt:", "Photo of a majestic lion drinking from a river in the savanna, sunset, hyperrealistic, 8k", height=100, help="Describe the image you want to create.")
-    neg_prompt = st.text_area("Negative Prompt:", "cartoon, blurry, low quality, watermark, text", height=100, help="Describe what you want to avoid in the image.")
+    prompt = st.text_area("1. Enter your Prompt:", "Photo of a majestic lion drinking from a river in the savanna, sunset, hyperrealistic, 8k", height=100, help="Describe the image you want to create.")
+    neg_prompt = st.text_area("2. Enter a Negative Prompt:", "cartoon, blurry, low quality, watermark, text", height=100, help="Describe what you want to avoid in the image.")
 
     st.subheader("Advanced Settings")
     steps = st.slider("Inference Steps:", min_value=10, max_value=150, value=30, help="More steps can improve quality but take longer.")
@@ -61,12 +62,12 @@ with st.sidebar:
     seed = st.number_input("Seed:", value=st.session_state.seed, min_value=-1, max_value=2**32-1, help="Use -1 for a random seed, or set a specific number for reproducible results.")
     st.button("🎲 Randomize Seed", on_click=set_random_seed)
 
+# --- Main content area ---
+generate_button = st.button("Generate Image", type="primary", use_container_width=True)
 
-# --- Image Generation and Display Area ---
-col1, col2 = st.columns([0.7, 0.3])
-
-with col1:
-    generate_button = st.button("Generate Image", type="primary", use_container_width=True)
+# Use a placeholder for the image and download button for a cleaner layout
+image_placeholder = st.empty()
+download_placeholder = st.empty()
 
 if generate_button:
     if not prompt:
@@ -97,20 +98,24 @@ if generate_button:
         except Exception as e:
             st.error(f"An error occurred during image generation: {e}")
 
-# --- Display the image if it exists ---
+# --- Display the image and download button if it exists in the session state ---
 if "generated_image" in st.session_state:
-    st.image(st.session_state.generated_image, caption="Generated Image", use_column_width=True)
+    image_placeholder.image(st.session_state.generated_image, caption="Generated Image", use_column_width=True)
 
-    # --- Convert image to bytes for download ---
+    # --- Convert image to bytes for download button ---
     buf = BytesIO()
     st.session_state.generated_image.save(buf, format="PNG")
     byte_im = buf.getvalue()
 
-    # --- Add a download button ---
-    st.download_button(
+    # --- Add a download button to its placeholder ---
+    download_placeholder.download_button(
         label="Download Image",
         data=byte_im,
         file_name="generated_image.png",
         mime="image/png",
         use_container_width=True
     )
+else:
+    # Show a welcome message in the placeholder before the first generation
+    image_placeholder.info("Your generated image will appear here. Adjust the settings in the sidebar and click 'Generate'.")
+
