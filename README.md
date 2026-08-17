@@ -4,8 +4,9 @@
 
 ![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
-[![GitHub forks](https://img.shields.io/github/forks/crimsonKn1ght/img-gen.svg?style=social&label=Fork)](https://github.com/crimsonKn1ght/Code-OA-detection-model/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/crimsonKn1ght/img-gen.svg?style=social&label=★%20Star)](https://github.com/crimsonKn1ght/Code-OA-detection-model/stargazers)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![GitHub forks](https://img.shields.io/github/forks/crimsonKn1ght/img-gen.svg?style=social&label=Fork)](https://github.com/crimsonKn1ght/img-gen/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/crimsonKn1ght/img-gen.svg?style=social&label=★%20Star)](https://github.com/crimsonKn1ght/img-gen/stargazers)
 
 ## 🖼️ What is img-gen?
 
@@ -26,6 +27,24 @@ Streamlit app link: https://img-gen-tool.streamlit.app/
 - Stable Diffusion XL
 - Kandinsky 2.2
 
+## Run it locally
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+`app.py` is a thin launcher that starts the same app on port 7860 and binds all
+interfaces, which is what container and Spaces-style hosting expects:
+
+```bash
+python app.py
+```
+
+The first run for a given model downloads its weights, which is the slow part. A CUDA
+GPU is used in half precision when one is available, and it falls back to CPU in full
+precision otherwise.
+
 ## How to use
 1. Select a model in the sidebar
 2. Enter your prompt + optional negative prompt
@@ -35,6 +54,10 @@ Streamlit app link: https://img-gen-tool.streamlit.app/
 Your image will appear on the main panel and can be downloaded.
 
 ---
+
+## License
+
+Apache License 2.0. See [LICENSE](LICENSE).
 
 
 ## 🤝 Contributions are greatly welcomed
