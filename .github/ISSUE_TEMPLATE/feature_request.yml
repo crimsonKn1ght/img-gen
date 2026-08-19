@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose a focused improvement to img-gen
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Please describe the user need before proposing an implementation.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preliminary checks
+      options:
+        - label: I searched existing issues and did not find the same request.
+          required: true
+        - label: I am willing to help implement or test this feature.
+          required: false
+  - type: textarea
+    id: need
+    attributes:
+      label: User need
+      description: What problem would this feature solve, and who would benefit?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior rather than only the code you would add.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe workarounds or alternative designs you considered.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and compatibility
+      description: Note affected models, hardware, dependencies, interface behavior, or breaking changes.
