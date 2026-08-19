@@ -6,9 +6,9 @@
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![GitHub forks](https://img.shields.io/github/forks/crimsonKn1ght/img-gen.svg?style=social&label=Fork)](https://github.com/crimsonKn1ght/img-gen/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/crimsonKn1ght/img-gen.svg?style=social&label=?%20Star)](https://github.com/crimsonKn1ght/img-gen/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/crimsonKn1ght/img-gen.svg?style=social&label=Stars)](https://github.com/crimsonKn1ght/img-gen/stargazers)
 
-## ??? What is img-gen?
+## What is img-gen?
 
 It creates images using diffusion models on your PC. It imports diffusion models (the first run is long as it downloads the model) and then creates images to your heart's content. It may take more or less time depending on your GPU.
 
